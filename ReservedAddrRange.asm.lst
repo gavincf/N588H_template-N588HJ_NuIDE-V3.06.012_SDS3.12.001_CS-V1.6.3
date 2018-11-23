@@ -1,0 +1,31 @@
+Tue Oct 23 10:35:25 2018
+
+
+
+
+
+
+
+	Macro Assembler  -  Version 1.00.0
+		-----------------------------------------------
+
+		Input  Filename : D:\ASM_SAVE_backup\Nuvoton8bit\N588H_template\N588H340_NuIDE V3.06.012_SDS3.12.001_CS V1.6.1.4\ReservedAddrRange.asm.app
+		Output Filename : D:\ASM_SAVE_backup\Nuvoton8bit\N588H_template\N588H340_NuIDE V3.06.012_SDS3.12.001_CS V1.6.1.4\ReservedAddrRange.oc
+
+
+    1  0000000                   	CHIP	65C02
+    2  0000000                   	SECTION_ReservedAddrRange1: SECTION
+    3  0000000                   Var_ReservedAddrRange1                   DS 880H
+    4  0000880                   	ENDS
+    5  0000000                   ;**The following is audio external**
+    6  0000000                   ;**The following is sentence label**
+    7  0000000                   ;**The following is INIT_DECODE_SPEECH label**
+    8  0000000                   	EXT_PROGRAM: SECTION
+    9  0000000                   	ENDS
+   10  0000000                   
+		Line(s) Assembled : 10
+		Error(s): 0
+		Warn(s) : 0
+		Begin Assembling Time : Tue Oct 23 10:35:25 2018
+		End   Assembling Time : Tue Oct 23 10:35:25 2018
+

@@ -1,0 +1,52 @@
+
+;C_EQU_OTHER	EQU	80H	;做计时或随机的声音处理。
+
+
+
+;------------------------------------
+C_EQU_END	EQU	0FFH ;
+
+;.7 = 0: normal eqution
+;.7 = 1: EVT0 trigger next section,
+C_EQU_EVT EQU	80H
+
+C_EQU_SOUND EQU	00H
+C_EQU_DELAY EQU	10H
+C_EQU_DELAY_IDX EQU	20H
+
+
+C_EQU_ACT_EXT EQU	00H
+C_EQU_PEE EQU	01H
+;C_EQU_SLOW_POTTY EQU	02H
+;C_EQU_FAST_POTTY EQU	03H
+C_EQU_SLOW2_POTTY EQU	04H
+C_EQU_FAST2_POTTY EQU	05H
+C_EQU_ACT_STOP EQU	06H	
+
+C_EQU_ALIGN_NO EQU	15;9
+
+
+;------------------------------------
+
+;use 2 byte for 1 section
+;byte1: = 
+;0000XXXXB:
+;C_EQU_SOUND
+;C_EQU_DELAY
+;xxxx0000B; with action
+;C_EQU_ACT
+;----------- byte2:
+;CS_XXXX
+;DELAY IDX
+
+EQU_NO	DS	1
+EQU_NO_CNT DS	1
+
+EQU_IDX	DS	1
+EQU_BUF	DS	16
+EQU_DLYCNT DS	2
+
+R_EQU_NO_BK	DS	1 ;不要和上一个EQU相同
+
+P0_ADDR DS	2
+USER_FLAG20 DS	1

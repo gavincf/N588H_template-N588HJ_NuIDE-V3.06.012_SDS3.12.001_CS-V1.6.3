@@ -1,0 +1,106 @@
+
+C_DRUMLED_LEN	EQU	T000504MS
+;----------------------
+; RAM
+;-----------------------------
+;.IF ( C_EVP_DLY_EN .EQ. 1 )
+;占用一个RAM
+;WB_EVP_DLYCNT	DS	1
+
+;.ENDIF
+
+;===========================================
+;pls define below RAMs
+.IF ( C_DLYCNT0_ENABLE .EQ. 1 )
+WB_DLYCNT0	DS	2
+WB_DLYCNT0_IDX DS	1
+.ENDIF
+
+.IF ( C_DLYCNT1_ENABLE .EQ. 1 )
+WB_DLYCNT1	DS	2
+WB_DLYCNT1_IDX DS	1
+.ENDIF
+
+.IF ( C_DLYCNT2_ENABLE .EQ. 1 )
+WB_DLYCNT2	DS	2
+WB_DLYCNT2_IDX DS 1
+.ENDIF
+.IF ( C_DLYCNT3_ENABLE .EQ. 1 )
+WB_DLYCNT3	DS	2
+.ENDIF
+.IF ( C_DLYCNT4_ENABLE .EQ. 1 )
+WB_DLYCNT4	DS	2
+.ENDIF
+
+
+USER_FLAG_A	DS	1
+;.0=1: CH1 END
+;.1=1: CH2 END
+;.2=1: MS END
+;.3=1: CH3 END
+;.4=1: new KEY1
+;.5=1: new KEY2
+;.6=1: new KEY3
+;.7=1: new KEY4
+
+USER_FLAG_B	DS	1
+;.0: CNT0
+;.1: CNT1
+;.2: CNT2
+;.3: CNT3
+;.4: CNT4
+;.5: EQU_CNT
+;.6: EXT0;; share for user
+;.7: auto CNT REACH
+
+
+
+USER_FLAG10	DS	1
+;.4 -.7=1: 8MS/8.192/5.33MS
+;.0=1: CHECK CH1
+;.1=1: CHECK CH2
+;.2=1: CHECK MS ; share for used
+;.3=1: CHECK CH3; share for used
+
+
+USER_INT_FLAG0	DS	1
+;.2=1: TMG0 2MS REACH
+;.3=1: 5.33M REACH
+	
+
+
+.IF ( C_BP0_ULTRAIO_EN .EQ. 0 )
+.IFNDEF R_BP0
+	.IF ( C_R_BP0_USED .EQ. 1 )
+R_BP0	DS	1
+	.ENDIF
+.ENDIF
+.ENDIF
+
+.IF ( C_BP1_ULTRAIO_EN .EQ. 0 )
+.IFNDEF R_BP1
+	.IF ( C_R_BP1_USED .EQ. 1 )
+R_BP1	DS	1
+	.ENDIF
+.ENDIF
+.ENDIF
+.IF ( C_BP2_ULTRAIO_EN .EQ. 0 )
+.IFNDEF R_BP2
+	.IF ( C_R_BP2_USED .EQ. 1 )
+R_BP2	DS	1
+	.ENDIF
+.ENDIF
+.ENDIF
+
+.IF ( C_BP0_STATUS_EN .EQ. 1 )
+BP0_STATUS	DS	1
+.ENDIF
+.IF ( C_BP1_STATUS_EN .EQ. 1 )
+BP1_STATUS	DS	1
+.ENDIF
+.IF ( C_BP2_STATUS_EN .EQ. 1 )
+BP2_STATUS	DS	1
+.ENDIF
+
+WB_KEYCH_CODE	DS	C_KEYCH_MAX ;not include matrix KEY
+

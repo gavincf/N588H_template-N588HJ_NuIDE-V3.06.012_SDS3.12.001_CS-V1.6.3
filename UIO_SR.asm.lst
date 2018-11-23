@@ -1,0 +1,59 @@
+Tue Oct 23 10:35:27 2018
+
+
+
+
+
+
+
+	Macro Assembler  -  Version 1.00.0
+		-----------------------------------------------
+
+		Input  Filename : D:\ASM_SAVE_backup\Nuvoton8bit\N588H_template\N588H340_NuIDE V3.06.012_SDS3.12.001_CS V1.6.1.4\UIO_SR.asm.app
+		Output Filename : D:\ASM_SAVE_backup\Nuvoton8bit\N588H_template\N588H340_NuIDE V3.06.012_SDS3.12.001_CS V1.6.1.4\Code_Release\UIO_SR.oc
+
+
+    1  0000000                   	CHIP	65C02
+    2  0000000                   .PUBLIC UIO_COMMAND_ADDR_TABLE
+    3  0000000                   .PUBLIC UIO_INIT
+    4  0000000                   .PUBLIC UIO_N55P_INIT
+    5  0000000                   .PUBLIC UIO_N55P_ENTER_SLEEP
+    6  0000000                   .PUBLIC UIO_N55P_WAKE_UP
+    7  0000000                   .PUBLIC UIO_START
+    8  0000000                   .PUBLIC UIO_STOP
+    9  0000000                   .PUBLIC UIO_STOP_ALL_KEEP_LEVEL_PIN
+   10  0000000                   .PUBLIC BAM_EVENT_ADDR_OFFSET_TABLE
+   11  0000000                   .PUBLIC BAM_CH_BIT_TABLE
+   12  0000000                   .PUBLIC BAM_EVENT_ADDR_SP1
+   13  0000000                   .PUBLIC UIO_EVENT_CH_FLAG
+   14  0000000                       CODE: SECTION
+   15  0000000                   UIO_COMMAND_ADDR_TABLE:
+   16  0000000                   BAM_EVENT_ADDR_OFFSET_TABLE:
+   17  0000000                   BAM_CH_BIT_TABLE:
+   18  0000000                   UIO_INIT:
+   19  0000000                   UIO_START:
+   20  0000000                   UIO_STOP:
+   21  0000000                   UIO_STOP_ALL_KEEP_LEVEL_PIN:
+   22  0000000                   UIO_N55P_INIT:
+   23  0000000                   UIO_N55P_ENTER_SLEEP:
+   24  0000000                   UIO_N55P_WAKE_UP:
+   25  0000000  60               RTS
+   26  0000001                       ENDS
+   27  0000001                   
+   28  0000001                       UIO_USED_RAM: SECTION
+   29  0000000                   BAM_EVENT_ADDR_SP1: DS 0
+   30  0000000                   UIO_EVENT_CH_FLAG: DS 0
+   31  0000000                       ENDS
+   32  0000001                   
+   33  0000001                   ;**The following is audio external**
+   34  0000001                   ;**The following is sentence label**
+   35  0000001                   ;**The following is INIT_DECODE_SPEECH label**
+   36  0000001                   	EXT_PROGRAM: SECTION
+   37  0000000                   	ENDS
+   38  0000001                   
+		Line(s) Assembled : 38
+		Error(s): 0
+		Warn(s) : 0
+		Begin Assembling Time : Tue Oct 23 10:35:27 2018
+		End   Assembling Time : Tue Oct 23 10:35:27 2018
+

@@ -1,0 +1,8 @@
+
+
+EQU_NO	DS	1
+EQU_NO_CNT DS	1
+
+EQU_DLYCNT DS	2
+
+

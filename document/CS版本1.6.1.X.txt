@@ -1,0 +1,239 @@
+
+
+需要用户创建文件:
+	MODULE.TXT
+	写入模块名:可以自行增加
+CS_N588HJ.exe程序
+	CS_N588HJ.exe
+会显示MODULE.TXT列出的模块在模块显示框,	可选取,
+选取后点击Program会在上一层建立Include文件夹，增加模块，复制和增加预设的连接代码
+点击Add,Delete会增加，删除模块
+
+CS_N588HJ.exe程序
+	;解决Main.asm原文件的代码残留问题.
+复制 Main.asm 为Main_Copy.asm
+	如果 Main_Copy.asm 存在,不要编辑/修改 Main.asm
+	
+用户要做的:
+	MAIN.ASM: FXF15中断增加:	MR_SET_GAPTIME_FLAG
+			  TMG0_ISR中断增加:	MR_SET_TMG0_GAP_FLAG
+
+	
+CS_N588HJ.exe 在Include文件夹 创建文件:
+ALL_CONST_FILES.h
+ALL_MR_FILES.h
+ALL_RAM_FILES.h
+	include全部对应的头文件
+BK0_ASM_FILES.asm
+	include全部用到的BK0 asm文件
+
+并COPY以下文件到Include文件夹:
+	模块名_LIB.ASM
+	模块名_LIB1.ASM
+	模块名_LIB2.ASM
+	模块名_PG.ASM
+	模块名_PG1.ASM
+	模块名_PG2.ASM
+	模块名_USER.ASM ;可以被_PCC接口调用的代码放在这里
+	模块名_USER1.ASM
+	模块名_USER2.ASM
+;
+	模块名_CONST.ASM
+	模块名_CONST1.ASM
+	模块名_CONST2.ASM
+	模块名_RAM.ASM
+	模块名_RAM1.ASM
+	模块名_RAM2.ASM
+	模块名_MR.ASM
+	模块名_MR1.ASM
+	模块名_MR2.ASM
+	
+默认框架模块包含:
+COMMON
+WAITKEY
+USER
+PROJ
+AUTOSLEEP
+POWOFF
+MAIN0
+MODE0
+
+
+;========================================================
+;------------ 如果使用WAITKEY框架结构 ----------------
+;========================================================
+	IDE_CONST.H;根据IDE设定修改。
+WAITKEY包括功能:
+WAITKEY_SUB.ASM:
+	清看门狗
+	检测定时中断，事件
+		
+WAITKEY_USER_PCC.ASM	功能:
+	产生USER接口:
+		WAITKEY_CHK:		;循环检测
+		WAITKEY_TMG0:		;TMG0定时到
+		WAITKEY_SPCH1END:	;SPCH1播放结束事件
+		WAITKEY_SPCH2END:	;SPCH2播放结束事件
+		WAITKEY_MSEND:		;MS播放结束事件
+		WAITKEY_EVT:		;自定义事件
+		WAITKEY_FXF15:		;FXF15时间到
+		WAITKEY_21D3MS:		;21.3ms时间到
+		
+	DLYCNT0;需要在WAITKEY_CONST.H打开C_DLYCNT0_ENABLE EQU 1
+	DLYCNT1;需要在WAITKEY_CONST.H打开C_DLYCNT1_ENABLE EQU 1
+	DLYCNT2;需要在WAITKEY_CONST.H打开C_DLYCNT2_ENABLE EQU 1
+	DLYCNT3;需要在WAITKEY_CONST.H打开C_DLYCNT3_ENABLE EQU 1
+	DLYCNT4;需要在WAITKEY_CONST.H打开C_DLYCNT4_ENABLE EQU 1
+
+
+
+开放PCC接口:
+
+WAITKEY_USER_PCC.ASM:
+	WAITKEY_CHK_PCC
+	WAITKEY_TMG0_PCC
+	WAITKEY_SPCH1END_PCC
+	WAITKEY_SPCH2END_PCC
+	WAITKEY_MSEND_PCC
+	WAITKEY_EVT_PCC
+	WAITKEY_FXF15_PCC
+	WAITKEY_21D3MS_PCC
+
+MAIN0_USER_PCC.asm
+	POI_MODULE_PCC
+	POI_CHKTEST_PCC
+	MAIN_WAKEUP_PCC
+	WAKEUP_ANYKEY_PCC
+	
+PWOFF_USER_PCC.asm
+	PWOFF_LOOP2_PCC
+	ENTER_STOP_PRE_PCC
+	
+MODE0_USER_PCC.asm
+	M0_PRE_PCC
+	M0S0_AUTOCNT_PCC
+
+
+
+;========================================================
+;------------ 如果 不 使用WAITKEY框架结构 自行编写框架模块
+;========================================================
+;模块名还是跟 默认框架模块名,根据自己需要选用
+COMMON
+WAITKEY
+USER
+PROJ
+AUTOSLEEP
+POWOFF
+MAIN0
+MODE0
+
+
+注意Main.asm的增加的代码:
+
+;-----------------------------------
+; 在	USER_RAM: SECTION 后面增加的            
+;-----------------------------------
+	INCLUDE ALL_CONST_FILES.H
+	INCLUDE ALL_RAM_FILES.H
+R_USER_STACK_ST	DS	0
+	INCLUDE ALL_MR_FILES.H
+
+
+;-----------------------------------
+; 在	MAIN_LOOP: 前面增加的             
+;-----------------------------------
+	JMP	POI_USER
+	INCLUDE BK0_ASM_FILES.ASM
+
+
+;========================================================
+;根据格式，自行增加模块
+;========================================================
+根据模块名_XXX,自己需要选用
+	模块名_LIB.ASM
+	模块名_LIB1.ASM
+	模块名_LIB2.ASM
+	模块名_PG.ASM
+	模块名_PG1.ASM
+	模块名_PG2.ASM
+	模块名_USER.ASM ;可以被_PCC接口调用的代码放在这里
+	模块名_USER1.ASM
+	模块名_USER2.ASM
+;
+	模块名_CONST.ASM
+	模块名_CONST1.ASM
+	模块名_CONST2.ASM
+	模块名_RAM.ASM
+	模块名_RAM1.ASM
+	模块名_RAM2.ASM
+	模块名_MR.ASM
+	模块名_MR1.ASM
+	模块名_MR2.ASM
+
+
+;========================================================
+;根据格式，自行增加PCC接口
+;========================================================
+调用接口格式
+;-------------------------------
+调用文件名:
+	模块名_XXXX_PCC.ASM ;
+
+接口label:
+BBBB_PCC:
+	
+	
+;-------------------------------
+;被调用接口格式
+;-------------------------------
+被调用文件名:
+	模块名_USER.ASM
+
+BBBB_PCC_模块名 EQU C_TRUE
+.IF(BBBB_PCC_模块名.EQ.C_FALSE)
+;-----------------------------------------1
+	JSR	BK0_SCAN_S_KEY;
+;-----------------------------------------2
+.ENDIF;BBBB_PCC_模块名
+
+;注意:
+	模块名_USER_PCC.ASM ;这个文件里面的代码不能再被其它的
+'接口label:
+BBBB_PCC:' 调用
+
+;=======================================
+;CS_N588HJ.exe程序PCC接口操作过程
+;=======================================
+;
+文件"AAAA_PCC.ASM"会先读出，内容里面的
+label: BBBB_PCC:
+会调用"模块名_USER.ASM"中的:
+
+BBBB_PCC_模块名 EQU C_TRUE
+.IF(BBBB_PCC_模块名.EQ.C_FALSE)
+;-----------------------------------------1
+	JSR	BK0_SCAN_S_KEY;
+;-----------------------------------------2
+.ENDIF;BBBB_PCC_模块名
+
+以下部分
+;-----------------------------------------1
+	JSR	BK0_SCAN_S_KEY;
+;-----------------------------------------2
+复制到
+label: BBBB_PCC:下一行
+然后再把修改过的文件内容写回到AAAA_PCC.ASM,覆盖.
+
+注意:
+*1:
+注意执行CS_N588HJ.exe后不要修改复制过来的模块代码，以免使用Delete功能时删除代码出错。
+;-----------------------------------------1
+	JSR	BK0_SCAN_S_KEY;
+;-----------------------------------------2
+
+	
+	
+	
+	
+	

@@ -1,0 +1,47 @@
+
+;=============================
+;	检测一般的模式开关;
+; 每个模式对应一个INPUT IO
+; N588H/J-V02
+;==================================
+;
+;
+C_MODE0_V	EQU	0 ;TRYME
+C_MODE1_V	EQU	1 ;DADDY
+C_MODE2_V	EQU	2 ;MUMMY
+;C_MODE3_V	EQU	3 ;
+C_MODE_NOP	EQU	0FH
+;change name
+C_MOD_TRYME_V EQU C_MODE0_V
+C_MOD_DADDY_V EQU C_MODE1_V
+C_MOD_MUMMY_V EQU C_MODE2_V
+
+
+C_MAX_MODE	EQU	3 ; 要大于等于2.
+
+SR_CHKMODE0_PORT EQU	BP1
+C_CHKMODE0_BIT EQU	C_BIT5
+SR_CHKMODE1_PORT EQU	BP1
+C_CHKMODE1_BIT EQU	C_BIT6
+SR_CHKMODE2_PORT EQU	BP1
+C_CHKMODE2_BIT EQU	C_BIT7
+
+
+R_MODE_FG	DS	1
+;.7=1:模式更改
+;.4=0/1: CHECK MODE PIN 1ST / 2ND TIME
+
+;.3:.0
+;0 - (C_MAX_MODE -1 )
+;0FH:无效
+R_MODE_CHK	DS	1
+;0 - (C_MAX_MODE -1 )
+;.3:.0: 当前检测到的模式
+;.7:.4: 存储上一次检测到的模式
+	
+
+R_CHKMODE_DEBOUNCE	DS	1
+
+
+
+

@@ -1,0 +1,18 @@
+
+;=======================
+; POI
+;=======================
+
+C_MAX_VOL_IDX EQU 080H ; N588H CH1/CH2/CH3:0-8 , MS:0-127
+C_MAX_TPO_IDX	EQU	00AH
+
+C_DEFAULT_TPO_IDX	EQU	4
+C_DEFAULT_VOL_IDX	EQU	C_MAX_VOL_IDX-10H
+
+C_VOL_LOOP_ENABLE EQU 1
+
+
+VOL_TPO_IDX	DS	1
+;.7:.4: VOL IDX
+;.3:.0: TPO IDX
+

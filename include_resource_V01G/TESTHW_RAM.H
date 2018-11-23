@@ -1,0 +1,15 @@
+
+
+
+C_TRIG_CNT0_BP0 EQU 00000000B
+C_TRIG_CNT0_BP1 EQU 00000000B
+C_TRIG_CNT0_BP2 EQU 00000000B
+
+;------------------------------------
+
+C_CNT0_TIME1	EQU	T001500MS; pulse on time
+
+C_CNT0_TIME2	EQU	T000504MS; pulse off time
+
+C_CNT0_TIME3	EQU	T000005MS; continue to count time
+

@@ -1,0 +1,258 @@
+;*********************************************************
+;<<<<<<<<<	project descript  >>>>>>>>>>
+;================================================
+;prject no:
+;Template: Nuide 3.06.012 + N588H SDS V3.12.001_V49_LESSRAM:13 B RAM USED.
+;IC: body: N588H
+;Date:2018/6/14
+;Voltage:AA*3
+	
+;*********************************************************
+
+;1,修改OPTION,计算R_USER_STACK_START，测试RAM的使用
+;2,修改IDE_OPTION.H，PROJECT_CONFIG.H, 
+;3,对应修改xxx_RAM.H文件
+;for N567H
+;4,N567H_NOTEONOFF_T.ASM
+;	KEY2LED_USER.ASM
+;	
+;5,更换NRPNTable.asm
+;	
+
+;C_GAPTIME	EQU	10
+C_GAPTIME	EQU	5
+;	according to Fosc
+;5: 5.33MS
+;8: 8MS
+;81: 8.192MS
+C_W567BS	EQU	0
+C_W588AS	EQU	1
+C_W588CD	EQU	2
+C_N567GHK	EQU	3
+C_W567CJ	EQU	4
+C_N588H		EQU	5
+C_N588L		EQU	6
+
+C_CHIP	EQU	C_N588H
+
+;=====================================
+;=====================================
+;
+; Function configure
+;
+;=====================================
+;=======================================
+
+
+C_TMG0_EN EQU	0
+
+
+
+
+C_W55P241_ENABLE	EQU	0
+;----------------------------------------------
+;	PROJECT_CONST.H
+;----------------------------------------------
+C_DLYCNT0_ENABLE	EQU	1
+C_DLYCNT1_ENABLE	EQU	0
+C_DLYCNT2_ENABLE	EQU	0
+C_DLYCNT3_ENABLE	EQU	0
+C_DLYCNT4_ENABLE	EQU	0
+C_DLYCNT5_ENABLE	EQU	0
+
+C_TEMPO_ENABLE	EQU 0
+	
+
+C_SPIFLASH_ENABLE	EQU 0
+C_SPI_SP_IDX_ENABLE	EQU	0
+C_KLOK_ENABLE		EQU	0
+C_HUIYIN_ENABLE		EQU	0
+
+
+C_LEDS_FLOW_ENABLE	EQU	0
+
+;==========================================
+;KEY2LED_RAM.H
+;===========================================
+C_KEY2LED_ENABLE	EQU	0
+
+;===========================================
+
+
+
+
+
+CONST_10US_NOP	EQU	30
+
+C_KEYCH_MAX		EQU	2
+
+C_BUZZER_ENABLE EQU	0
+
+
+
+;========================
+;	WAITKEY_RAM.H
+;========================
+
+C_CMPA_EN	EQU	0
+C_CHK_LVR_EN	EQU 0
+
+C_HASBRO_TESTPCBA_EN EQU 0
+
+;========================
+;========================
+
+;----------------------------------
+;	check key
+;----------------------------------
+
+;C_SCANKEY_2CH	EQU	0
+
+C_CHK1KEY_EN1	EQU	0
+C_CHK1KEY_EN2		EQU	0
+
+;========================
+;	CHKMKEY_RAM.H
+;========================
+C_CHKMKEY_EN		EQU	0
+C_SCANKEY_4CH_LP EQU	0
+C_SCANKEY_4CH_LN	EQU	0
+
+
+C_MKEYCH_MAX	EQU	0; MAX = 4;if GND as output: should be '1'
+
+C_MKEYCH_MAX_REV EQU 0
+
+C_CHKMKEY_GND_AS_OP EQU 0
+
+C_LED_MATRIX_EN		EQU		0
+C_LED_MATRIX_CONFIG		EQU		0
+C_CHK_KEY_SHARE_LED_EN EQU	0
+
+
+
+C_WLED_EXIT	EQU	0
+
+
+;===============================
+; special function
+;================================
+;==============================
+;MOTOR PWM
+;==============================
+C_M1_EN			EQU	0
+C_M1_PWM_EN	EQU	0
+
+
+;=============================
+;	LED_FSH_CTRL_RAM.H
+;==============================
+C_LIGHT_FSH_ENABLE EQU	0
+C_DRUMLED_ENABLE	EQU	0;按鼓对应的LED亮，按时间控制亮灭
+;==============================
+;WIPER
+;==============================
+C_WIPER_EN	EQU	0
+C_CHKPOS_EN 	EQU	0
+
+;==========================
+;	CHK_MODE.ASM
+;==========================
+C_CHKMODE_EN	EQU	0
+
+
+;==============================================
+
+C_PWON_SLEEP_EN EQU	0
+
+;=========================
+;	WAITKEY_RAM.H
+;=========================
+C_EVP_DLY_EN	EQU	0
+
+C_CH_INS_CHANGE_EN EQU	0
+
+
+C_TPO_ADJ_EN	EQU	0
+
+
+;--------------------- min 1 port EN,最少有一个允许。
+C_BP0_STATUS_EN	EQU	1; 
+C_BP1_STATUS_EN	EQU	1;
+C_BP2_STATUS_EN	EQU	0;
+;------------------------------------------
+
+C_R_BP0_USED EQU 1
+C_R_BP1_USED EQU 1
+C_R_BP2_USED EQU 0
+
+
+
+
+
+;=========================
+;LED7SEG_RAM.H
+;=========================
+C_LED7SEG_EN	EQU 0
+
+C_AMP_EN	EQU	0
+
+C_SOLO_EN	EQU	0
+
+C_RHY_EN	EQU	0
+
+;========================
+;	RANDOM_RAM.H
+;========================
+C_RANDOM0_EN EQU	0
+C_RANDOM1_EN EQU	0
+
+RANDOM0_0_BK_EN EQU	0
+RANDOM0_1_BK_EN EQU	0
+RANDOM0_2_BK_EN EQU	0
+RANDOM0_3_BK_EN	EQU	0
+
+
+
+;========================
+;	EQU_RAM.H
+;========================
+C_EQU_EN	EQU	0
+C_EQU_PWOFF_EN	EQU	0
+
+C_GROUP_EN	EQU	0
+
+;========================
+;	TouchKeys_N588H.asm
+;========================
+;C_TOUCH_EN EQU	0
+
+
+
+;========================
+;	AUTOSLEEP_RAM.H
+;========================
+C_AUTOSLEEP_WAITKEY_EN EQU	0
+
+
+C_LEDS_FLOW_USE_CNT0 EQU	0
+
+
+C_AUTOSLEEP_1B EQU	0
+C_AUTOSLEEP_2B EQU	1
+
+
+;========================
+;	PLAY_LIST.H
+;========================
+C_PLAY_LIST_EN EQU 1
+
+
+C_BMA223_EN EQU	0
+
+
+C_IRTX2_EN	EQU	1
+C_IRRX_EN	EQU	1
+
+
+C_PWMLED_EN 	EQU 1

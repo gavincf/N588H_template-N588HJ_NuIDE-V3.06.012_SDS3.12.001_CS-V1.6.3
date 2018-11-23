@@ -1,0 +1,22 @@
+;==========================================================================
+;	DEFINE INSTRUMENTS AND DRUMS INSIDE THIS SECTION
+;==========================================================================
+;	EXAMPLE =>  ;INS0: ~ INS127:, DRUM35: ~ DRUM81:
+;				INS0:
+;					DEFADSR <A=0.1, D=0.1, S=0.8, R=0.7>
+;					DEFROOT "SINE_E3"<UNOTE=E3, CENT=0, HPITCH=B3> ;(SINE_E3.WAV)
+;					DEFROOT "SINE_E4"<UNOTE=E4, CENT=3, HPITCH=B4> ;(SINE_E4.WAV)
+;					DEFROOT "SINE_E5"<UNOTE=E5, CENT=28, HPITCH=B5> ;(SINE_E5.WAV)
+;					DEFROOT "SINE_E6"<UNOTE=E6, CENT=28, HPITCH=A#7> ;(SINE_E6.WAV)
+;				INS1:
+;					DEFINS "PIANO" ;(PIANO.INS)
+;				DRUM35:
+;					DEFDRUM	"35_Kick_20K"<SR=20000> ;(35_Kick_20K.WAV)
+;==========================================================================
+MIDDLE_C = C4
+
+
+
+
+
+

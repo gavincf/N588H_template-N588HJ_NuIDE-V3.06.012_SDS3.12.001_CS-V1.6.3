@@ -1,0 +1,128 @@
+
+;2017/11/24 15:07:15
+;A1
+;1,configure
+;2,fill table: SCAN_ROW_TBL0
+;3,fill table:KEY_TRANS_TBL0
+; key save in: WB_MKEYCH_CODE,WB_MKEYCH_CODE+1,WB_MKEYCH_CODE+2,WB_MKEYCH_CODE+3
+;-------------
+	
+	
+
+;=============================
+;key matrix
+;	debounce setting
+; * 10.66ms
+;===============================
+C_KEYCH1_DEBOUNCE EQU	04H
+C_KEYCH2_DEBOUNCE EQU	040H
+C_KEYCH12_DEBOUNCE EQU	044H
+
+C_KEYCH3_DEBOUNCE EQU	04H
+C_KEYCH4_DEBOUNCE EQU	040H
+
+C_KEYCH34_DEBOUNCE EQU	044H
+
+;========================================
+;>>>> 	configure    <<<<
+;========================================
+C_SCAN_MATRIX_NMOS EQU	0; N588H没有NMOS:通过设置成输入悬空为高阻态。
+;0:CMOS
+;1:NMOS
+
+;--------------------------------
+;	output port
+;-------------------------------
+
+C_KEY_MATRIX_ROW_CNT0	EQU	2
+
+;bonding option
+;C_KEY_MATRIX_ROW_CNT1	EQU	4
+;C_KEY_MATRIX_ROW_CNT2	EQU	3
+
+R_ROW_PORT0		EQU	R_BP1
+SR_ROW_PORT0		EQU	BP1
+SR_ROW_PORT0_MODE		EQU	BP1D
+C_ROW_OP0_MASK_INV		EQU	00011000B
+
+C_ROW1_ENABLE EQU	0 ; matrix第二组输出口PORT
+.IF (C_ROW1_ENABLE .EQ. 1)
+R_ROW_PORT1		EQU	R_BP0
+SR_ROW_PORT1		EQU	BP0
+SR_ROW_PORT1_MODE		EQU	BP0D
+C_ROW_OP1_MASK_INV	EQU	10111111B
+.ENDIF
+
+;--------------------------------
+;	input port
+;--------------------------------
+
+SR_MATRIX_IP0_PORT	EQU	BP1
+C_MATRIX_IP0_DIR		EQU	0 ;check bit order 位查询顺序：0:从低位到高位，1：从高位到低位
+C_MATRIX_IP0_MASK	EQU	00000111B
+C_MATRIX_IP0_BIT_ST		EQU	C_BIT0
+C_MATRIX_IP0_BIT_END 	EQU C_BIT2 ; last bit 扫描一行输入口最后一位位置
+
+C_MATRIX_IP1_EN		EQU	0 ;第二组输入PIN PORT
+C_MATRIX_IP1_DIR	EQU	0 ;check bit order 位查询顺序：0:从低位到高位，1：从高位到低位
+SR_MATRIX_IP1_PORT	EQU	BP1
+C_MATRIX_IP1_MASK	EQU	11111111B
+C_MATRIX_IP1_BIT_ST		EQU	C_BIT2
+C_MATRIX_IP1_BIT_END 	EQU C_BIT5; last bit 扫描一行输入口最后一位位置
+
+
+;----------------------------------------------
+;-----------------------------------------------
+;<<<<     fixed     >>>>
+;------------------------------------------------
+
+
+
+;--------------------------------
+
+
+; ----- CHECK KEY
+WB_MKEYCH_CODE		DS	C_MKEYCH_MAX
+
+
+
+
+
+
+;-----------------------------
+WB_KEYCODE			DS	1
+
+.IF (C_SCANKEY_4CH_LP .EQ. 1)
+ROW_SCAN_PT		DS	1
+BIT_SCAN				DS	1
+.ENDIF
+
+.IF (C_SCANKEY_4CH_LN .EQ. 1)
+BIT_SCAN_ST				DS	1
+BIT_SCAN_END				DS	1
+.ENDIF
+
+WB_KEY_FLAG			DS	1
+;.0,.4 : KEYCH GET KEY FLAG, 	HOLD KEY FLAG
+;.1,.5 : KEYCH+1 GET KEY FLAG,HOLD KEY FLAG
+;WB_KEY_FLAG1		DS	1
+;------------------------------.0=0/1:KEY WHITE KEY CONTROL LED OFF/ON
+;.4=0/1:KEYCH0 KEY-NOTE CONTROL OFF/ON
+;.5=0/1:KEYCH1 KEY-NOTE CONTROL OFF/ON
+WB_KEYDLY				DS	2
+;+0 : .3:.0: KEYCH0
+;+0 : .7:.4: KEYCH1
+;+1 : .3:.0: KEYCH2
+;+1 : .7:.4: KEYCH3
+
+MATRIX_IP_0			DS	1
+
+.IF ( C_MKEYCH_MAX_REV .EQ. 1 )
+R_KEYCH_MAX		DS	1
+.ENDIF
+
+M_SHARE_RAM01	DS	1
+
+
+
+
